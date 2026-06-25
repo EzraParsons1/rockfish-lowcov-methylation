@@ -15,6 +15,8 @@
 
   ## Files
   - `simulate.py` — read-count simulator with known ground truth
+  - `estimators.py` - runs one of 5 methylator shrinkage estimators
+  - `benchmark.py` - how well does each method improve the estimate of p? (main experiment) 
   - `crossover.py` — does shrinkage help the clock? (secondary experiment)
   - `figures/` — benchmark plots
 
@@ -22,5 +24,6 @@
   ```bash
   conda env create -f environment.yml
   conda activate rockfish-lowcov
-  python simulate.py
+  python benchmark.py
+  python crossover.py
   ```
