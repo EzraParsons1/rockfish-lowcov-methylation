@@ -9,7 +9,6 @@ from sklearn.model_selection import cross_val_predict
 from sklearn.model_selection import LeaveOneGroupOut
 from simulate import simulate
 from estimators import estimate
-from estimators import impute_nans
 
 def naive_features(data):
     with np.errstate(invalid="ignore", divide="ignore"):
@@ -32,7 +31,7 @@ def loso_mae_years(X, data):
     return np.mean(np.abs(pred_years - data["age"]))
 
 
-coverages = [3, 5, 8, 12, 20, 30]
+coverages = [3, 5, 8, 12, 15, 30]
 nseeds = 3
 
 naive_maes, v3b_maes = [], []

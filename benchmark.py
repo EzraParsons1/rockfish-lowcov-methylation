@@ -2,7 +2,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 from simulate import simulate
 from estimators import estimate
-from estimators import impute_nans
 
 coverages = [3, 5, 8, 12, 15, 30]
 n_seeds = 50
@@ -14,7 +13,8 @@ for ci, c in enumerate(coverages):
                 data = simulate(seed=s, coverage=c)
                 u = data["n"] - data["m"]
                 for meth in methods:
-                        est = estimate(data["m"], u, meth)
+                        with np.errstate(divide="ignore", invalid="ignore"):
+                                est = estimate(data["m"], u, meth)
                         results[meth][ci, s] = np.mean(np.abs(est - data["true_p"]))
 
 for meth in methods:
