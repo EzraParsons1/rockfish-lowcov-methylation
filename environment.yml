@@ -1,0 +1,8 @@
+name: rockfish-lowcov
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy
+  - scikit-learn
+  - matplotlib
