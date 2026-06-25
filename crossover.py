@@ -2,10 +2,6 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from sklearn.preprocessing import StandardScaler
-from sklearn.linear_model import ElasticNetCV
-from sklearn.pipeline import make_pipeline
-from sklearn.model_selection import cross_val_predict, LeaveOneGroupOut
 from simulate import simulate
 from estimators import estimate
 from estimators import impute_nans
@@ -40,7 +36,7 @@ for c in coverages:
     for s in range(nseeds):
         data = simulate(seed=s, coverage=c)
         n_runs.append(loso_mae_years(naive_features(data), data))
-        v_runs.append(loso_mae_years(shrink_methylation(data["m"], data["n"] - data["m"]), data))
+        v_runs.append(loso_mae_years(estimate(data["m"], data["n"] - data["m"]), data))
     naive_maes.append(np.mean(n_runs))
     v3b_maes.append(np.mean(v_runs))
     print(f"coverage {c:>2}:  naive {naive_maes[-1]:5.2f}   v3b {v3b_maes[-1]:5.2f}")
@@ -52,5 +48,4 @@ plt.xlabel("coverage")
 plt.ylabel("LOSO MAE (years)")
 plt.title("When does shrinking clock features help? (crossover)")
 plt.legend()
-plt.savefig("crossover.png", dpi=120)
-print("saved crossover.png")
+plt.savefig("figures/crossover.png", dpi=120)

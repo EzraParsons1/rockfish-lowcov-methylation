@@ -17,7 +17,6 @@ def estimate(m, u, method):
                         with np.errstate(invalid="ignore"):
                                 prop = m/(m+u)
 
-                        v = np.nanvar(prop, axis=0)
                         v = np.maximum(np.nanvar(prop, axis=0), 1e-6)
 
                         s = (mu * (1-mu))/v - 1
@@ -37,8 +36,7 @@ def estimate(m, u, method):
 
                         sampling_var = mu * (1 - mu) * mean_inv_n
 
-                        observed_var = np.nanvar(prop, axis=0)
-                        observed_var = np.maximum(observed_var, 1e-6)
+                        observed_var = np.maximum(np.nanvar(prop, axis=0), 1e-6)
 
                         bio_var = np.maximum(observed_var - sampling_var, 1e-6)
 
