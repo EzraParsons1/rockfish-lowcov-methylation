@@ -41,7 +41,7 @@ for c in coverages:
     for s in range(nseeds):
         data = simulate(seed=s, coverage=c)
         n_runs.append(loso_mae_years(naive_features(data), data))
-        v_runs.append(loso_mae_years(estimate(data["m"], data["n"] - data["m"]), data))
+        v_runs.append(loso_mae_years(estimate(data["m"], data["n"] - data["m"], "v3b"), data))
     naive_maes.append(np.mean(n_runs))
     v3b_maes.append(np.mean(v_runs))
     print(f"coverage {c:>2}:  naive {naive_maes[-1]:5.2f}   v3b {v3b_maes[-1]:5.2f}")
