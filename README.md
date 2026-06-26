@@ -13,11 +13,17 @@ All five methods use a posterior mean: p = (m+α)/(n+α+β). They differ only by
 
 Shrinking toward the site mean (v2, v3b) cuts low-coverage error ~3× vs naive, with no cost at high coverage.
 
+![clock error vs depth and breadth](figures/breadth_depth.png)
+
+Depth is superior in reducing mean error from the clock. Breadth has a drop-off at about 0.4 or 4000 sites. It is better to read 5000 sites at 8X depth than 10000 sites at 5X depth.
+
 ## Files
 - `simulate.py` — read-count simulator with known ground truth
 - `estimators.py` - runs one of 5 methylation shrinkage estimators
 - `benchmark.py` - how well does each method improve the estimate of p? (main experiment) 
 - `crossover.py` — does shrinkage help the clock? (secondary experiment)
+- `breadth_depth.py` — sweeps clock error over fraction-of-sites-observed × sequencing depth (10k-site genome)
+- `heatmap.py` — renders the breadth×depth grid from cube.npy
 - `figures/` — benchmark plots
 
 ## Run
