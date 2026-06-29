@@ -41,9 +41,9 @@ colors = ['tab:blue', 'tab:orange', 'tab:green']
 for di, depth in enumerate(depths):
     ax1.plot(within_map[:, di], f1_map[:, di], 'o-', color=colors[di], label=f'{depth}X')
     ax2.plot(within_map[:, di] - between_map[:, di], f1_map[:, di], 'o-', color=colors[di], label=f'{depth}X')
-ax1.set_title('raw within-block corr — drifts with depth')
+ax1.set_title('raw within-block corr')
 ax1.set_xlabel('within-block correlation'); ax1.set_ylabel('best F1')
-ax2.set_title('within − between (contrast) — collapses')
+ax2.set_title('within − between (contrast)')
 ax2.set_xlabel('within − between correlation')
 ax2.axvline(0.5, ls='--', color='gray'); ax2.axhline(0.9, ls=':', color='gray')
 ax1.legend(); ax2.legend()
